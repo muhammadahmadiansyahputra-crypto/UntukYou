@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Nabila Shayka (Bila) — Semesta Kecilku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0d080b;
+      --bg-card: #181015;
+      --bg-card-soft: rgba(32, 20, 27, 0.78);
+      --rose-primary: #e89eb8;
+      --rose-glow: rgba(232, 158, 184, 0.28);
+      --gold-champagne: #f3d299;
+      --gold-soft: rgba(243, 210, 153, 0.22);
+      --text-ivory: #fff6f9;
+      --text-muted: #cbb6bf;
+      --border-subtle: rgba(243, 210, 153, 0.22);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-script: 'Great Vibes', cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 15%, #23121c 0%, #0d080b 48%, #090507 100%);
+      color: var(--text-ivory);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Ambient floating petals */
+    #petal-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -30px;
+      width: 14px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #f8c3d7, #c86d8e);
+      border-radius: 70% 30% 70% 30%;
+      opacity: 0.35;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-40px) rotate(0deg) translateX(0px);
+        opacity: 0;
+      }
+      15% { opacity: 0.4; }
+      85% { opacity: 0.35; }
+      100% {
+        transform: translateY(108vh) rotate(360deg) translateX(45px);
+        opacity: 0;
+      }
+    }
+
+    .click-heart {
+      position: fixed;
+      pointer-events: none;
+      font-size: 18px;
+      color: var(--rose-primary);
+      text-shadow: 0 0 12px var(--rose-glow);
+      animation: floatHeart 1.2s ease-out forwards;
+      z-index: 9999;
+      user-select: none;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translate(-50%, -50%) scale(0.6); opacity: 1; }
+      100% { transform: translate(-50%, -130px) scale(1.35); opacity: 0; }
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(13, 8, 11, 0.82);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .nav-brand {
+      font-family: var(--font-script);
+      font-size: 1.9rem;
+      color: var(--gold-champagne);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-champagne);
+    }
+
+    .music-btn {
+      background: linear-gradient(135deg, rgba(232, 158, 184, 0.22), rgba(243, 210, 153, 0.22));
+      border: 1px solid var(--gold-champagne);
+      color: var(--text-ivory);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.3s ease;
+    }
+
+    .music-btn:hover {
+      background: linear-gradient(135deg, rgba(232, 158, 184, 0.38), rgba(243, 210, 153, 0.35));
+      box-shadow: 0 0 18px var(--rose-glow);
+    }
+
+    .music-btn.playing {
+      border-color: var(--rose-primary);
+      box-shadow: 0 0 20px var(--rose-glow);
+    }
+
+    /* Container & Sections */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.75rem;
+    }
+
+    .section-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.75rem;
+      color: var(--gold-champagne);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      font-weight: 600;
+      color: var(--text-ivory);
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0.75rem auto 0;
+      font-size: 0.98rem;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.42rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--gold-champagne);
+      font-size: 0.82rem;
+      letter-spacing: 1.6px;
+      margin-bottom: 1.15rem;
+    }
+
+    .hero-name {
+      font-family: var(--font-script);
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      color: var(--rose-primary);
+      text-shadow: 0 4px 32px rgba(232, 158, 184, 0.38);
+      line-height: 1.08;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-nickname {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      color: var(--gold-champagne);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.25rem, 2.6vw, 1.72rem);
+      color: var(--text-ivory);
+      max-width: 720px;
+      margin: 0 auto 2.1rem;
+      font-weight: 400;
+    }
+
+    /* Timeless Pill (shown when tanggalJadian is blank) */
+    .timeless-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--bg-card-soft);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 0.7rem 1.5rem;
+      color: var(--gold-champagne);
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Live Timer (shown automatically if tanggalJadian is filled later) */
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(74px, 115px));
+      gap: 0.9rem;
+      justify-content: center;
+      margin-bottom: 2.25rem;
+    }
+
+    .timer-box {
+      background: var(--bg-card-soft);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 1rem 0.6rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .timer-num {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold-champagne);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .timer-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+    }
+
+    .hero-cta {
+      background: linear-gradient(135deg, #e89eb8, #d87a9c);
+      color: #16090f;
+      font-weight: 600;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(232, 158, 184, 0.35);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(232, 158, 184, 0.5);
+    }
+
+    /* Wax Seal Love Letter */
+    .envelope-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, #1d1218, #130b10);
+      border: 1px solid var(--border-subtle);
+      border-radius: 26px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      position: relative;
+    }
+
+    .wax-seal-btn {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #f5d69c, #b8873d);
+      border: 3px solid #ffe9be;
+      color: #261409;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.35rem;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(243, 210, 153, 0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wax-seal-btn:hover {
+      transform: scale(1.07) rotate(-4deg);
+      box-shadow: 0 14px 36px rgba(243, 210, 153, 0.55);
+    }
+
+    .letter-content {
+      display: none;
+      margin-top: 2rem;
+      text-align: left;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 2rem;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .letter-content.open {
+      display: grid;
+      grid-template-columns: 1fr 1.38fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 740px) {
+      .letter-content.open {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .polaroid {
+      background: #fff9fb;
+      padding: 12px 12px 32px;
+      border-radius: 8px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+      transform: rotate(-2deg);
+      color: #2b1821;
+      text-align: center;
+    }
+
+    .polaroid img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .polaroid-caption {
+      font-family: var(--font-script);
+      font-size: 1.6rem;
+      margin-top: 0.55rem;
+      color: #4a2335;
+    }
+
+    .letter-text p {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: #f9eaf0;
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+
+    .letter-sign {
+      font-family: var(--font-script);
+      font-size: 2rem;
+      color: var(--gold-champagne);
+      margin-top: 1rem;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .memory-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+    }
+
+    .memory-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--rose-primary);
+      box-shadow: 0 18px 38px rgba(232, 158, 184, 0.18);
+    }
+
+    .memory-media-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: #23141d;
+    }
+
+    .memory-media-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .memory-card:hover .memory-media-wrap img {
+      transform: scale(1.05);
+    }
+
+    .memory-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(13, 8, 11, 0.74);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-subtle);
+      color: var(--gold-champagne);
+      font-size: 0.74rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .memory-body {
+      padding: 1.25rem 1.35rem;
+    }
+
+    .memory-title {
+      font-family: var(--font-serif);
+      font-size: 1.38rem;
+      color: var(--text-ivory);
+      margin-bottom: 0.35rem;
+    }
+
+    .memory-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Open When Capsules */
+    .capsule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .capsule-card {
+      background: linear-gradient(145deg, rgba(35, 21, 29, 0.9), rgba(19, 11, 16, 0.95));
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 1.75rem 1.4rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .capsule-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold-champagne);
+      box-shadow: 0 14px 32px rgba(243, 210, 153, 0.16);
+    }
+
+    .capsule-icon {
+      font-size: 2.1rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .capsule-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.32rem;
+      color: var(--gold-champagne);
+      margin-bottom: 0.4rem;
+    }
+
+    .capsule-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Love Jar */
+    .jar-section {
+      background: linear-gradient(165deg, rgba(31, 18, 25, 0.85), rgba(14, 9, 12, 0.95));
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: 3rem 1.75rem;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .jar-btn {
+      background: radial-gradient(circle at 30% 30%, rgba(232, 158, 184, 0.35), rgba(243, 210, 153, 0.15));
+      border: 2px solid var(--rose-primary);
+      color: var(--text-ivory);
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 0 28px var(--rose-glow);
+      transition: all 0.3s ease;
+      margin-bottom: 1.75rem;
+    }
+
+    .jar-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 38px rgba(232, 158, 184, 0.5);
+    }
+
+    .reason-paper {
+      background: rgba(255, 246, 249, 0.05);
+      border: 1px dashed var(--gold-champagne);
+      border-radius: 18px;
+      padding: 1.75rem 1.5rem;
+      min-height: 130px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reason-text {
+      font-family: var(--font-serif);
+      font-size: 1.42rem;
+      font-style: italic;
+      color: var(--text-ivory);
+      max-width: 620px;
+    }
+
+    .reason-count {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--gold-champagne);
+      letter-spacing: 1px;
+    }
+
+    /* Cinema Video Section (Portrait 9:16 optimized for Bila's video) */
+    .cinema-box {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #140b10;
+      border: 1px solid var(--gold-champagne);
+      border-radius: 26px;
+      padding: 1.5rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+      text-align: center;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      aspect-ratio: 9/16;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0d070a;
+      border: 1px solid rgba(232, 158, 184, 0.32);
+      box-shadow: 0 12px 32px rgba(232, 158, 184, 0.16);
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cinema-caption {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.24rem;
+      color: var(--rose-primary);
+      margin-top: 1.35rem;
+      line-height: 1.6;
+    }
+
+    /* Lightbox Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 4, 6, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #1a1016;
+      border: 1px solid var(--gold-champagne);
+      border-radius: 24px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.75rem;
+      position: relative;
+      animation: fadeUp 0.35s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: var(--text-ivory);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .modal-media {
+      width: 100%;
+      max-height: 440px;
+      object-fit: contain;
+      background: #11090d;
+      border-radius: 14px;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--gold-champagne);
+      margin-bottom: 0.65rem;
+    }
+
+    .modal-poem {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--text-ivory);
+      white-space: pre-line;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      font-family: var(--font-script);
+      font-size: 1.9rem;
+      color: var(--rose-primary);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="petal-layer"></div>
+
+  <nav>
+    <a href="#beranda" class="nav-brand">Bila ♥</a>
+    <div class="nav-links">
+      <a href="#surat">Surat Cinta</a>
+      <a href="#galeri">Galeri Bila</a>
+      <a href="#kapsul">Buka Saat…</a>
+      <a href="#alasan">Toples Cinta</a>
+      <a href="#bioskop">Video Kita</a>
+    </div>
+    <button id="musicToggle" class="music-btn" type="button">
+      <span>🎵</span> <span id="musicLabel">Putar Janji Suci Untuk Bila</span>
+    </button>
+    <audio id="backgroundMusic" src="janji-suci.mp3" autoplay preload="auto" loop></audio>
+  </nav>
+
+  <main class="container">
+    <!-- HERO -->
+    <section id="beranda" class="hero">
+      <span class="hero-badge">DIBUAT KHUSUS DENGAN SEPENUH HATI UNTUK</span>
+      <h1 class="hero-name">Nabila Shayka</h1>
+      <p class="hero-nickname">— Bila Sayang —</p>
+      <p class="hero-quote">
+        “Dari miliaran langkah di muka bumi, bertemu dan mencintaimu, Bila, adalah keajaiban paling tenang yang pernah Tuhan hadiahkan dalam hidupku.”
+      </p>
+
+      <!-- Tampil elegan saat tanggalJadian dikosongkan -->
+      <div id="timelessBadge" class="timeless-pill">
+        <span>✨</span>
+        <span>Setiap Detik Bersama Bila • Tak Terbatas Oleh Angka</span>
+        <span>♥</span>
+      </div>
+
+      <!-- Otomatis muncul jika suatu saat tanggalJadian diisi -->
+      <div id="timerGrid" class="timer-grid" style="display:none;" aria-label="Penghitung Waktu Bersama">
+        <div class="timer-box">
+          <span class="timer-num" id="tDays">0</span>
+          <span class="timer-label">Hari</span>
+        </div>
+        <div class="timer-box">
+          <span class="timer-num" id="tHours">0</span>
+          <span class="timer-label">Jam</span>
+        </div>
+        <div class="timer-box">
+          <span class="timer-num" id="tMinutes">0</span>
+          <span class="timer-label">Menit</span>
+        </div>
+        <div class="timer-box">
+          <span class="timer-num" id="tSeconds">0</span>
+          <span class="timer-label">Detik</span>
+        </div>
+      </div>
+
+      <a href="#surat" class="hero-cta">Buka Surat Cinta Untuk Bila ↓</a>
+    </section>
+
+    <!-- WAX SEAL LOVE LETTER -->
+    <section id="surat">
+      <div class="section-header">
+        <span class="section-eyebrow">Pesan Dari Hati Terdalam</span>
+        <h2 class="section-title">Sebuah Surat Untuk Bila</h2>
+        <p class="section-subtitle">Ketuk segel lilin emas di bawah ini untuk membuka isi hatiku yang mungkin tak selalu sempat terucap.</p>
+      </div>
+
+      <div class="envelope-wrapper">
+        <button id="openSealBtn" class="wax-seal-btn" type="button" title="Ketuk Segel Lilin">
+          Bila ♥
+        </button>
+        <p id="sealHint" style="color: var(--gold-champagne); font-size: 0.9rem;">Ketuk segel lilin emas untuk membentangkan surat</p>
+
+        <div id="letterBody" class="letter-content">
+          <div class="polaroid">
+            <img src="foto1.jpeg" alt="Nabila Shayka (Bila)">
+            <div class="polaroid-caption">Bila Sayang ♥</div>
+          </div>
+          <div class="letter-text">
+            <p>Sayangku, <strong>Nabila Shayka</strong> — atau <strong>Bila</strong> kesayanganku,</p>
+            <p>
+              Kalau suatu hari dunia terasa terlalu bising dan langkahmu terasa berat, aku ingin kamu membuka halaman ini dan mengingat satu hal pasti: ada seseorang yang selalu bersyukur setiap kali melihatmu tersenyum.
+            </p>
+            <p>
+              Kamu bukan sekadar seseorang yang singgah, Bila. Kamu adalah rumah tempat segala lelahku pulang, alasan di balik doa-doa paling tulusku, dan keindahan paling sederhana yang membuat hari-hari biasaku terasa luar biasa.
+            </p>
+            <p>
+              Terima kasih sudah hadir, terima kasih sudah bertahan, dan terima kasih sudah menjadi dirimu sendiri. Aku mencintaimu—hari ini, esok, dan di setiap versi masa depan kita.
+            </p>
+            <div class="letter-sign" id="senderSignature">Selamanya milikmu ♥</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE GALLERY -->
+    <section id="galeri">
+      <div class="section-header">
+        <span class="section-eyebrow">Jejak Cahaya & Senyummu</span>
+        <h2 class="section-title">Galeri Kenangan Bila</h2>
+        <p class="section-subtitle">Klik setiap bingkai di bawah ini untuk melihat fotomu beserta kata-kata yang kutulis khusus untukmu.</p>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- OPEN WHEN CAPSULES -->
+    <section id="kapsul">
+      <div class="section-header">
+        <span class="section-eyebrow">Pelukan Dari Jauh</span>
+        <h2 class="section-title">Kapsul “Buka Saat…”</h2>
+        <p class="section-subtitle">Pilih suasana hatimu saat ini, Bila. Biarkan kata-kataku memelukmu kapan pun kamu membutuhkannya.</p>
+      </div>
+
+      <div class="capsule-grid" id="capsuleGrid"></div>
+    </section>
+
+    <!-- LOVE JAR -->
+    <section id="alasan">
+      <div class="section-header">
+        <span class="section-eyebrow">Tak Terhitung Jumlahnya</span>
+        <h2 class="section-title">Toples 1001 Alasan Mencintai Bila</h2>
+      </div>
+
+      <div class="jar-section">
+        <button id="pickReasonBtn" class="jar-btn" type="button">✨ Ambil Satu Alasan Dari Toples Cinta</button>
+        <div class="reason-paper">
+          <p class="reason-text" id="reasonText">
+            “Karena caramu menatap dan peduli pada hal-hal kecil selalu berhasil membuat hatiku merasa paling dimengerti, Bila.”
+          </p>
+          <span class="reason-count" id="reasonCounter">Alasan #1 untuk Bila Sayang</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SURPRISE VIDEO CINEMA -->
+    <section id="bioskop">
+      <div class="section-header">
+        <span class="section-eyebrow">Layar Spesial Untukmu</span>
+        <h2 class="section-title">Bioskop Kejutan Bila</h2>
+        <p class="section-subtitle">Potongan perjalanan malam kita berdua yang selalu ingin kuputar berulang kali.</p>
+      </div>
+
+      <div class="cinema-box">
+        <div class="video-frame">
+          <video id="surpriseVideo" src="vidio.mp4" controls playsinline muted autoplay loop></video>
+        </div>
+        <p class="cinema-caption">
+          “Di sepanjang jalan malam itu, punya Bila di belakangku sudah cukup membuat seluruh perjalanan terasa seperti rumah.”
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Untuk Nabila Shayka (Bila)</span>
+    Dibuat khusus dengan segenap cinta, rindu, dan doa terbaik untukmu.
+  </footer>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="modal-backdrop" id="detailModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModalBtn" type="button" aria-label="Tutup">✕</button>
+      <div id="modalMediaContainer"></div>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-poem" id="modalPoem"></p>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // === PENGATURAN MUDAH UNTUK KAMU EDIT DI VS CODE ===
+    // =========================================================================
+    const PENGATURAN_CINTA = {
+      namaLengkap: "Nabila Shayka",
+      namaPanggilan: "Bila",
+      tanggalJadian: "", // Dikosongkan sesuai permintaanmu. Isi "YYYY-MM-DDTHH:MM:SS" jika suatu saat ingin mengaktifkan hitung waktu.
+      tandaTanganPengirim: "Selamanya milikmu ♥"
+    };
+    // =========================================================================
+
+    document.getElementById("senderSignature").textContent = PENGATURAN_CINTA.tandaTanganPengirim;
+
+    // Gallery Data wired directly to media/foto1.png .. media/foto6.png
+    const MEMORIES = [
+      {
+        badge: "Momen #1",
+        title: "Tatapan Hangat Di Balik Kacamata",
+        src: "foto1.jpeg",
+        shortDesc: "Potret di mana seluruh riuh di kepalaku mendadak tenang hanya karena menatap matamu, Bila.",
+        poem: `Bila sayang,
+
+Ada banyak pemandangan indah di dunia ini, tapi tak satu pun yang mampu menandingi sorot matamu yang teduh di balik kacamata ini. Setiap kali memandang fotomu, rasa lelah seharian seolah menguap begitu saja.`
+      },
+      {
+        badge: "Momen #2",
+        title: "Manisnya Ekspresi Gemasmu",
+        src: "foto2.jpeg",
+        shortDesc: "Sisi manja dan menggemaskan Bila yang selalu sukses bikin aku senyum-senyum sendiri.",
+        poem: "Kamu tahu nggak, Bila? Ekspresi spontan seperti ini justru yang paling sering membuatku jatuh cinta berkali-kali. Tetaplah jadi Bila yang ceria dan apa adanya seperti ini selamanya."
+      },
+      {
+        badge: "Momen #3",
+        title: "Teduh & Menenangkan",
+        src: "foto3.jpeg",
+        shortDesc: "Di matamu, aku selalu menemukan tempat pulang yang paling hangat tanpa perlu banyak kata.",
+        poem: `Nabila Shayka,
+
+Terima kasih sudah menjadi tempat paling aman bagi hatiku untuk bercerita dan bersandar. Di sampingmu, aku belajar bahwa cinta terbaik adalah rasa tenang.`
+      },
+      {
+        badge: "Momen #4",
+        title: "Tawa Kecil Yang Tak Tergantikan",
+        src: "foto4.jpeg",
+        shortDesc: "Hal-hal receh yang berubah menjadi kenangan paling mahal karena ada kamu di dalamnya.",
+        poem: "Aku tidak pernah meminta hidup yang sempurna, Bila. Aku hanya meminta agar keceriaan kecil seperti di momen ini selalu menjadi musik pengiring di sepanjang perjalanan usia kita."
+      },
+      {
+        badge: "Momen #5",
+        title: "Kesayangan Yang Selalu Dirindukan",
+        src: "foto5.jpeg",
+        shortDesc: "Salah satu foto favorit yang diam-diam sering kupandangi saat rindu sedang datang.",
+        poem: "Kalau jarak sedang memisahkan kita barang sebentar saja, foto ini selalu jadi pengingat betapa beruntungnya aku memiliki seseorang semanis dirimu, Bila."
+      },
+      {
+        badge: "Momen #6",
+        title: "Langkah Santai & Senyum Terbaikmu",
+        src: "foto6.jpeg",
+        shortDesc: "Semua doa baikku hari ini selalu bermuara pada satu nama: Nabila Shayka.",
+        poem: "Perjalanan kita masih panjang, Bila. Tapi satu janjiku: di setiap langkah dan bab baru hidupmu nanti, aku ingin selalu ada di sisimu untuk menjaga senyum indah ini."
+      }
+    ];
+
+    // Open When Capsules wired to Bila's photos
+    const CAPSULES = [
+      {
+        icon: "🌙",
+        title: "Buka saat Bila merindukanku",
+        preview: "Untuk malam-malam ketika jarak terasa sedikit lebih jauh…",
+        src: "foto1.jpeg",
+        poem: `Sayangku Bila,
+
+Jika kamu membuka kapsul ini karena sedang rindu, ketahuilah bahwa di detik yang sama hatiku juga sedang memanggil namamu. Pejamkan matamu sebentar, tarik napas pelan, dan rasakan pelukanku dari jauh. Sebentar lagi kita pasti bertemu lagi.`
+      },
+      {
+        icon: "🌧️",
+        title: "Buka saat harimu terasa berat",
+        preview: "Ketika dunia menuntut terlalu banyak dari pundakmu…",
+        src: "foto3.jpeg",
+        poem: `Bila sayang,
+
+Kamu tidak harus selalu kuat sendirian. Kalau hari ini terasa melelahkan, istirahatlah. Menangislah jika perlu, berceritalah padaku kapan pun kamu siap. Kamu sudah melakukan yang terbaik hari ini, dan aku sangat bangga padamu.`
+      },
+      {
+        icon: "✨",
+        title: "Buka saat Bila ragu pada diri sendiri",
+        preview: "Pengingat lembut tentang betapa berharganya dirimu…",
+        src: "foto4.jpeg",
+        poem: `Dengarkan aku baik-baik, Nabila Shayka:
+
+Kamu jauh lebih hebat, lebih kuat, dan lebih berharga daripada yang sering kamu bayangkan. Jangan pernah meragukan cahayamu sendiri—karena bagiku, kamulah bintang paling terang yang pernah kutemui.`
+      },
+      {
+        icon: "☀️",
+        title: "Buka saat Bila tersenyum bahagia",
+        preview: "Rayakan setiap kebahagiaan kecil maupun besarmu hari ini…",
+        src: "foto6.jpeg",
+        poem: `Lihat betapa manisnya senyummu hari ini, Bila!
+
+Apa pun yang membuatmu bahagia detik ini, aku ikut merayakannya dengan sepenuh hati. Semoga kebahagiaan seperti ini terus memelukmu setiap hari.`
+      }
+    ];
+
+    // Reasons Jar
+    const REASONS = [
+      "Karena caramu menatap dan peduli pada hal-hal kecil selalu berhasil membuat hatiku merasa paling dimengerti, Bila.",
+      "Karena senyum Bila adalah obat paling mujarab untuk segala penat di kepalaku.",
+      "Karena bersamamu, aku tidak perlu berpura-pura menjadi orang lain untuk merasa dicintai sepenuhnya.",
+      "Karena ketulusan hatimu membuatku ingin terus menjadi laki-laki yang lebih baik setiap harinya.",
+      "Karena perjalanan malam berdua bersamamu selalu terasa seperti tempat pulang paling tenang.",
+      "Karena tingkah gemas dan keceriaanmu selalu berhasil mencairkan hariku yang paling kaku sekalipun.",
+      "Karena kehadiranmu mengubah hari-hari yang biasa saja menjadi kenangan yang ingin kusimpan seumur hidup.",
+      "Karena dari sekian banyak kemungkinan di dunia ini, hatiku selalu pulang kepadamu, Bila."
+    ];
+
+    // Render Gallery
+    const galleryGrid = document.getElementById("galleryGrid");
+    MEMORIES.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "memory-card";
+      card.innerHTML = `
+        <div class="memory-media-wrap">
+          <img src="${item.src}" alt="${item.title}">
+          <span class="memory-badge">${item.badge}</span>
+        </div>
+        <div class="memory-body">
+          <h3 class="memory-title">${item.title}</h3>
+          <p class="memory-desc">${item.shortDesc}</p>
+        </div>
+      `;
+      card.addEventListener("click", () => {
+        openDetailModal(item.title, item.poem, item.src);
+      });
+      galleryGrid.appendChild(card);
+    });
+
+    // Render Capsules
+    const capsuleGrid = document.getElementById("capsuleGrid");
+    CAPSULES.forEach((cap) => {
+      const el = document.createElement("div");
+      el.className = "capsule-card";
+      el.innerHTML = `
+        <span class="capsule-icon">${cap.icon}</span>
+        <h3>${cap.title}</h3>
+        <p>${cap.preview}</p>
+      `;
+      el.addEventListener("click", () => {
+        openDetailModal(cap.title, cap.poem, cap.src);
+      });
+      capsuleGrid.appendChild(el);
+    });
+
+    // Modal Logic
+    const detailModal = document.getElementById("detailModal");
+    const modalMediaContainer = document.getElementById("modalMediaContainer");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalPoem = document.getElementById("modalPoem");
+
+    function openDetailModal(title, poem, src) {
+      modalTitle.textContent = title;
+      modalPoem.textContent = poem;
+      modalMediaContainer.innerHTML = `<img class="modal-media" src="${src}" alt="${title}">`;
+      detailModal.classList.add("active");
+    }
+
+    document.getElementById("closeModalBtn").addEventListener("click", () => {
+      detailModal.classList.remove("active");
+      modalMediaContainer.innerHTML = "";
+    });
+
+    detailModal.addEventListener("click", (e) => {
+      if (e.target === detailModal) {
+        detailModal.classList.remove("active");
+        modalMediaContainer.innerHTML = "";
+      }
+    });
+
+    // Wax Seal Interaction
+    document.getElementById("openSealBtn").addEventListener("click", () => {
+      const body = document.getElementById("letterBody");
+      const hint = document.getElementById("sealHint");
+      body.classList.toggle("open");
+      hint.textContent = body.classList.contains("open")
+        ? "Surat cinta terbuka khusus untuk Bila Sayang ♥"
+        : "Ketuk segel lilin emas untuk membentangkan surat";
+    });
+
+    // Love Jar Interaction
+    let reasonIdx = 0;
+    document.getElementById("pickReasonBtn").addEventListener("click", () => {
+      reasonIdx = (reasonIdx + 1) % REASONS.length;
+      document.getElementById("reasonText").textContent = `“${REASONS[reasonIdx]}”`;
+      document.getElementById("reasonCounter").textContent = `Alasan #${reasonIdx + 1} untuk ${PENGATURAN_CINTA.namaPanggilan} Sayang`;
+    });
+
+    // Relationship Timer (only shown if tanggalJadian is provided)
+    if (PENGATURAN_CINTA.tanggalJadian && PENGATURAN_CINTA.tanggalJadian.trim() !== "") {
+      document.getElementById("timelessBadge").style.display = "none";
+      document.getElementById("timerGrid").style.display = "grid";
+
+      function updateTimer() {
+        const start = new Date(PENGATURAN_CINTA.tanggalJadian).getTime();
+        const now = Date.now();
+        const diff = Math.max(0, now - start);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("tDays").textContent = days;
+        document.getElementById("tHours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("tMinutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("tSeconds").textContent = String(seconds).padStart(2, "0");
+      }
+      setInterval(updateTimer, 1000);
+      updateTimer();
+    }
+
+    // Floating Rose Petals & Click Hearts
+    const petalLayer = document.getElementById("petal-layer");
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement("div");
+      p.className = "petal";
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = (9 + Math.random() * 10) + "s";
+      p.style.animationDelay = (-Math.random() * 12) + "s";
+      petalLayer.appendChild(p);
+    }
+
+    document.addEventListener("click", (e) => {
+      const h = document.createElement("span");
+      h.className = "click-heart";
+      h.textContent = "♥";
+      h.style.left = e.clientX + "px";
+      h.style.top = e.clientY + "px";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 1200);
+    });
+
+    // Background song
+    const musicToggle = document.getElementById("musicToggle");
+    const musicLabel = document.getElementById("musicLabel");
+    const backgroundMusic = document.getElementById("backgroundMusic");
+
+    async function playBackgroundMusic() {
+      if (!backgroundMusic.paused) {
+        musicToggle.classList.add("playing");
+        musicLabel.textContent = "Janji Suci Sedang Diputar…";
+        return;
+      }
+
+      try {
+        await backgroundMusic.play();
+        musicToggle.classList.add("playing");
+        musicLabel.textContent = "Janji Suci Sedang Diputar…";
+      } catch (error) {
+        if (error.name === "NotAllowedError") {
+          musicLabel.textContent = "Klik halaman untuk memutar lagu";
+          return;
+        }
+
+        console.error("Lagu tidak dapat diputar:", error);
+        musicLabel.textContent = "Lagu gagal diputar";
+      }
+    }
+
+    function startMusicAfterInteraction(event) {
+      document.removeEventListener("pointerdown", startMusicAfterInteraction);
+      document.removeEventListener("keydown", startMusicAfterInteraction);
+
+      if (event.target instanceof Element && event.target.closest("#musicToggle")) {
+        return;
+      }
+
+      void playBackgroundMusic();
+    }
+
+    document.addEventListener("pointerdown", startMusicAfterInteraction);
+    document.addEventListener("keydown", startMusicAfterInteraction);
+    void playBackgroundMusic();
+
+    musicToggle.addEventListener("click", async () => {
+      if (backgroundMusic.paused) {
+        await playBackgroundMusic();
+      } else {
+        backgroundMusic.pause();
+        musicToggle.classList.remove("playing");
+        musicLabel.textContent = "Putar Janji Suci Untuk Bila";
+      }
+    });
+  </script>
+</body>
+</html>
